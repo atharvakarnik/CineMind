@@ -39,7 +39,7 @@ Ingestion → Chunking → Embedding → Vector store (Chroma) → Retrieval →
 
 ## Project structure (target)
 ```
-cinemind/
+CineMind/
 ├── CLAUDE.md
 ├── README.md
 ├── requirements.txt
