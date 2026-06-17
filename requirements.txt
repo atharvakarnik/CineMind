@@ -1,0 +1,9 @@
+llama-index==0.11.*
+llama-index-llms-google-genai==0.1.*
+llama-index-embeddings-huggingface==0.3.*
+chromadb==0.5.*
+sentence-transformers==3.*
+streamlit==1.38.*
+python-dotenv==1.0.*
+wikipedia==1.4.*
+requests==2.32.*

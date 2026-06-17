@@ -18,8 +18,7 @@ This file is the single source of truth for the project. Read it fully before ma
 - **RAG framework:** LlamaIndex
 - **Vector store:** ChromaDB (local, persistent)
 - **Embeddings:** sentence-transformers `all-MiniLM-L6-v2` (free, runs locally)
-- **LLM (generation):** Anthropic Claude API — model `claude-haiku-4-5` (fast/cheap default;
-  use `claude-sonnet-4-6` for harder subjective queries)
+- **LLM (generation)**: Google Gemini API via the `llama-index-llms-google-genai` package — model `gemini-3.5-flash` (free tier; Flash family). Keep the call isolated in `src/agent.py` so it can be swapped with one line.
 - **UI:** Streamlit (chat interface)
 - **Data sources:** TMDb API (structured metadata + reviews) and Wikipedia (plot/background).
   IMDb datasets are an optional later addition.
@@ -85,7 +84,7 @@ After each phase: **stop, let me test it, then I will commit via GitHub Desktop*
 - Pin major dependencies in `requirements.txt`.
 
 ## Environment variables (see `.env.example`)
-- `ANTHROPIC_API_KEY` — Claude API
+- `GOOGLE_API_KEY` — Google Gemini API (from Google AI Studio)
 - `TMDB_API_KEY` — TMDb API
 
 ## Commands
@@ -103,5 +102,5 @@ After each phase: **stop, let me test it, then I will commit via GitHub Desktop*
 
 ## Deployment (Phase 5)
 - Hugging Face Spaces, **Docker SDK** (the built-in Streamlit SDK is deprecated).
-- Store `ANTHROPIC_API_KEY` and `TMDB_API_KEY` as **Space secrets**, never in the repo.
+- Store `GOOGLE_API_KEY` and `TMDB_API_KEY` as **Space secrets**, never in the repo.
 - The Chroma store can be rebuilt at startup or shipped pre-built — decide based on its size.
