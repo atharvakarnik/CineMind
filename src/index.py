@@ -59,16 +59,15 @@ def main() -> None:
     storage_context = StorageContext.from_defaults(vector_store=vector_store)
     splitter = SentenceSplitter(chunk_size=CHUNK_SIZE, chunk_overlap=CHUNK_OVERLAP)
 
-    index = VectorStoreIndex.from_documents(
-        documents,
-        storage_context=storage_context,
-        transformations=[splitter],
-    )
-    node_count = len(index.docstore.docs)
+    # Split explicitly (rather than via from_documents' transformations=) so we have
+    # an accurate node count: Chroma stores text itself, so LlamaIndex never
+    # populates index.docstore.docs and len(index.docstore.docs) would read 0.
+    nodes = splitter.get_nodes_from_documents(documents)
+    index = VectorStoreIndex(nodes=nodes, storage_context=storage_context)
 
     print("\n--- Indexing summary ---")
     print(f"Documents loaded: {len(documents)}")
-    print(f"Nodes/chunks embedded: {node_count}")
+    print(f"Nodes/chunks embedded: {len(nodes)}")
     print(f"Final collection count: {collection.count()}")
 
 
