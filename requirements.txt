@@ -62,6 +62,7 @@ llama-index-embeddings-openai==0.6.0
 llama-index-instrumentation==0.5.0
 llama-index-llms-google-genai==0.9.5
 llama-index-llms-openai==0.7.9
+llama-index-vector-stores-chroma==0.5.5
 llama-index-workflows==2.21.0
 markdown-it-py==4.2.0
 MarkupSafe==3.0.3
